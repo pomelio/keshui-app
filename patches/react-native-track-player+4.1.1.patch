@@ -1,0 +1,45 @@
+diff --git a/node_modules/react-native-track-player/lib/src/trackPlayer.d.ts b/node_modules/react-native-track-player/lib/src/trackPlayer.d.ts
+index 574f7ea..02a3a58 100644
+--- a/node_modules/react-native-track-player/lib/src/trackPlayer.d.ts
++++ b/node_modules/react-native-track-player/lib/src/trackPlayer.d.ts
+@@ -17,6 +17,7 @@ export declare function setupPlayer(options?: PlayerOptions): Promise<void>;
+  */
+ export declare function registerPlaybackService(factory: () => ServiceHandler): void;
+ export declare function addEventListener<T extends Event>(event: T, listener: EventPayloadByEvent[T] extends never ? () => void : (event: EventPayloadByEvent[T]) => void): import("react-native").EmitterSubscription;
++export declare function removeAllListeners<T extends Event>(event: T): import("react-native").EmitterSubscription;
+ /**
+  * @deprecated This method should not be used, most methods reject when service is not bound.
+  */
+diff --git a/node_modules/react-native-track-player/lib/src/trackPlayer.js b/node_modules/react-native-track-player/lib/src/trackPlayer.js
+index 250cdbb..edbb58f 100644
+--- a/node_modules/react-native-track-player/lib/src/trackPlayer.js
++++ b/node_modules/react-native-track-player/lib/src/trackPlayer.js
+@@ -51,6 +51,10 @@ export function registerPlaybackService(factory) {
+ export function addEventListener(event, listener) {
+     return emitter.addListener(event, listener);
+ }
++
++export function removeAllListeners(event) {
++    return emitter.removeAllListeners(event);
++}
+ /**
+  * @deprecated This method should not be used, most methods reject when service is not bound.
+  */
+diff --git a/node_modules/react-native-track-player/src/trackPlayer.ts b/node_modules/react-native-track-player/src/trackPlayer.ts
+index 340c1b1..13dfa7f 100644
+--- a/node_modules/react-native-track-player/src/trackPlayer.ts
++++ b/node_modules/react-native-track-player/src/trackPlayer.ts
+@@ -83,6 +83,13 @@ export function addEventListener<T extends Event>(
+   return emitter.addListener(event, listener);
+ }
+ 
++
++export function removeAllListeners<T extends Event>(
++  event: T
++) {
++  return emitter.removeAllListeners(event);
++}
++
+ /**
+  * @deprecated This method should not be used, most methods reject when service is not bound.
+  */

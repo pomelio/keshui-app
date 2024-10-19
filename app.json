@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "sleepynews",
-    "slug": "sleepynews",
+    "name": "keshui",
+    "slug": "keshui",
     "version": "1.0.0",
+    "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -13,13 +14,21 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "associatedDomains":["applinks:keshui.us.pagwe.net"],
+      "supportsTablet": true,
+      "bundleIdentifier": "net.pagwe.keshui",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "net.pagwe.keshui"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +40,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "57f311d9-8c09-4dd2-89ef-cd11b3132c6d"
+      }
     }
   }
 }
